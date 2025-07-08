@@ -15,17 +15,6 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
-OPENROUTER_API_KEY = st.secrets["openrouter"]["OPENROUTER_API_KEY"]
-if not os.getenv("OPENROUTER_API_KEY"):
-    st.error("API key not loaded from .env file")
-
-try:
-    from forecast import get_forecast_results_cached
-    FORECAST_AVAILABLE = True
-except ImportError as e:
-    st.error(f"Cannot import forecast.py: {e}")
-    FORECAST_AVAILABLE = False
-
 st.set_page_config(page_title="Material Intelligence Assistant", layout="wide", initial_sidebar_state="expanded")
 col1, col2 = st.columns([10, 1])
 with col1:
@@ -33,6 +22,14 @@ with col1:
 with col2:
     st.image("bosch.png", width=80)
     
+OPENROUTER_API_KEY = st.secrets["openrouter"]["OPENROUTER_API_KEY"]
+
+try:
+    from forecast import get_forecast_results_cached
+    FORECAST_AVAILABLE = True
+except ImportError as e:
+    st.error(f"Cannot import forecast.py: {e}")
+    FORECAST_AVAILABLE = False
 # ============================================================================
 # HELPER FUNCTIONS
 # ============================================================================
@@ -127,7 +124,7 @@ def get_real_economic_multipliers_from_llm(region):
         "employment_multiplier": "jobs supported per direct job",
         "output_multiplier": "economic output per dollar input",
         "supply_chain_factor": "local vs imported components ratio",
-        "regulatory_cost_factor": "compliance cost premium",
+        "regulatory_cost_factor": "compliance cost premium",`
         "data_sources": "economic research basis",
         "confidence_level": "high/medium/low based on data availability"
     }}
@@ -135,7 +132,7 @@ def get_real_economic_multipliers_from_llm(region):
     
     try:
         # Load API key from environment
-        OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+        st.secrets["OPENROUTER_API_KEY"]
         
         if not OPENROUTER_API_KEY:
             st.warning("OpenRouter API key not found. Using fallback multipliers.")
