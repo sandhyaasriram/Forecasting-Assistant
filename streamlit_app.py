@@ -1,4 +1,12 @@
 import streamlit as st
+
+st.set_page_config(page_title="Material Intelligence Assistant", layout="wide", initial_sidebar_state="expanded")
+col1, col2 = st.columns([10, 1])
+with col1:
+    st.title("Material Intelligence Assistant")
+with col2:
+    st.image("bosch.png", width=80)
+    
 import pandas as pd
 import numpy as np
 import hashlib
@@ -14,13 +22,6 @@ import json
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-
-st.set_page_config(page_title="Material Intelligence Assistant", layout="wide", initial_sidebar_state="expanded")
-col1, col2 = st.columns([10, 1])
-with col1:
-    st.title("Material Intelligence Assistant")
-with col2:
-    st.image("bosch.png", width=80)
     
 OPENROUTER_API_KEY = st.secrets["openrouter"]["OPENROUTER_API_KEY"]
 
