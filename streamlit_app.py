@@ -26,6 +26,13 @@ except ImportError as e:
     st.error(f"Cannot import forecast.py: {e}")
     FORECAST_AVAILABLE = False
 
+st.set_page_config(page_title="Material Intelligence Assistant", layout="wide", initial_sidebar_state="expanded")
+col1, col2 = st.columns([10, 1])
+with col1:
+    st.title("Material Intelligence Assistant")
+with col2:
+    st.image("bosch.png", width=80)
+    
 # ============================================================================
 # HELPER FUNCTIONS
 # ============================================================================
@@ -335,12 +342,6 @@ def apply_regional_constraints_with_llm_multipliers(region, multipliers):
 # ============================================================================
 # MAIN STREAMLIT APPLICATION
 # ============================================================================
-st.set_page_config(page_title="Material Intelligence Assistant", layout="wide", initial_sidebar_state="expanded")
-col1, col2 = st.columns([10, 1])
-with col1:
-    st.title("Material Intelligence Assistant")
-with col2:
-    st.image("bosch.png", width=80)
 
 if 'forecast_displayed' not in st.session_state:
     st.session_state.forecast_displayed = False
