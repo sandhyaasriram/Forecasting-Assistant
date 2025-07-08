@@ -15,7 +15,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+OPENROUTER_API_KEY = st.secrets["openrouter"]["OPENROUTER_API_KEY"]
 if not os.getenv("OPENROUTER_API_KEY"):
     st.error("API key not loaded from .env file")
 
